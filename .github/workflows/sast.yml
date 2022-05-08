@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Prepare variables
+      	name: Prepare variables
+      	id: vars
 				uses: ./.github/workflows/sast.yml
 				shell: bash
 				run: |
