@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Prepare variables
-			- uses: ./.github/workflows/sast.yml
+      uses: ./.github/workflows/sast.yml
 			- id: vars
 				shell: bash
 				run: |
