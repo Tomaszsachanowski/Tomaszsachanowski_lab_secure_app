@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      	name: "Prepare variables"
-      	id: vars
-				uses: ./.github/workflows/sast.yml
-				shell: bash
-				run: |
-					echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-					echo "::set-output name=sha_short::$(git rev-parse HEAD)"
-      - name: Prepare Mixeway docker image
-        run: |
-					docker pull mixeway/scanner:latest
-      - name: Run Scan
-				run: |
-					docker run -e OSS_USERNAME=01112220@pw.edu.pl -e OSS_KEY=3fa43cb99173880f453d4114becb8f525616ab65 -e MIXEWAY_URL=https://hub.mixeway.io -e MIXEWAY_KEY=df6064ae-f79b-4a93-aaf2-fd37d60fc5d1 -e MIXEWAY_PROJECT_ID=89 -e MODE=STANDALONE -e MIXEWAY_PROJECT_NAME=tomaszsachanowski_lab_secure_app -e COMMIT_ID=test -e BRANCH=master -v /opt/lab_sec_audit/sast:/opt/sources mixeway/scanner:latest
+      	- uses: ./.github/workflows/sast.yml
+	- name: Prepare variables
+      	  id: vars
+	  shell: bash
+	  run: |
+	    echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+            echo "::set-output name=sha_short::$(git rev-parse HEAD)"
+        - name: Prepare Mixeway docker image
+          run: |
+	    docker pull mixeway/scanner:latest
+        - name: Run Scan
+	   run: |
+            docker run -e OSS_USERNAME=01112220@pw.edu.pl -e OSS_KEY=3fa43cb99173880f453d4114becb8f525616ab65 -e MIXEWAY_URL=https://hub.mixeway.io -e MIXEWAY_KEY=df6064ae-f79b-4a93-aaf2-fd37d60fc5d1 -e MIXEWAY_PROJECT_ID=89 -e MODE=STANDALONE -e MIXEWAY_PROJECT_NAME=tomaszsachanowski_lab_secure_app -e COMMIT_ID=test -e BRANCH=master -v /opt/lab_sec_audit/sast:/opt/sources mixeway/scanner:latest
