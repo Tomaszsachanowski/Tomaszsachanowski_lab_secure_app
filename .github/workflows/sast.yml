@@ -12,8 +12,8 @@ jobs:
 
     steps:
       - name: Prepare variables
-			- uses: actions/checkout@v1
-				id: vars
+      - uses: actions/checkout@v1
+			  id: vars
 				shell: bash
 				run: |
 					echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
