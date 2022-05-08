@@ -12,8 +12,8 @@ jobs:
 
     steps:
       - name: Prepare variables
-      uses: ./.github/workflows/sast.yml
-			- id: vars
+      - id: vars
+				uses: ./.github/workflows/sast.yml
 				shell: bash
 				run: |
 					echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
